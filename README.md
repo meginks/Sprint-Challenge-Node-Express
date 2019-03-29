@@ -40,7 +40,7 @@ In REST architecture style, everything is considered a resource and each resourc
 
 - [ ] What can the API return to help clients know if a request was successful?
 
-The API can return a 201 or 200 response. 
+The API can return a 201 or 200 response.
 
 - [ ] How can we partition our application into sub-applications? 
 
