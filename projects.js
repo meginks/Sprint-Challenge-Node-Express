@@ -61,7 +61,7 @@ router.get('/:id/actions', async (req, res) => {
         }} catch (error) {
             res.status(500)
             .json({
-                message: `error getting actions. Error: ${error}`
+                message: `error getting projects. Error: ${error}`
             })
         }
     }
@@ -77,7 +77,7 @@ router.post('/', async (req, res) => {
     } catch (error) {
         res.status(500)
         .json({
-            message: `Cannot create action. Error: ${error}`
+            message: `Cannot create project. Error: ${error}`
         })
     }
 })
@@ -93,13 +93,13 @@ router.put('/:id', async (req, res) => {
         } else {
             res.status(404)
             .json({
-                message: `Cannot find action to update.`
+                message: `Cannot find project to update.`
             })
         }
     } catch (error) {
         res.status(500)
         .json({
-            message: `Cannot update action. Error: ${error}`
+            message: `Cannot update project. Error: ${error}`
         })
     }
 }) 
@@ -115,13 +115,13 @@ router.delete('/:id', async (req, res) => {
         } else {
             res.status(404)
             .json({
-                message: `Cannot find action to delete`
+                message: `Cannot find project to delete`
             })
         }
     } catch (error) {
         res.status(500)
         .json({
-            message: `Cannot delete action. Error: ${error}`
+            message: `Cannot delete project. Error: ${error}`
         })
     }
 })
