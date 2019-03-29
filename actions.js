@@ -5,7 +5,7 @@ const ActionDB = require('./data/helpers/actionModel.js');
 
 router.get('/', async (req, res) => {
     try {
-        const action = await ActionDB.get(req.query); 
+        const action = await ActionDB.get(); 
         res.status(200)
         .json(action)
     } catch (error) {

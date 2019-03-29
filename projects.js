@@ -2,10 +2,13 @@ const express = require('express');
 const router = express.Router();
 const ProjectDB = require('./data/helpers/projectModel.js'); 
 
+// GET REQUESTS 
 
-router.get('/:id', async (req, res) => {
+// get all 
+
+router.get('/', async (req, res) => {
     try {
-        const projects = await ProjectDB.get(req.params.id); 
+        const projects = await ProjectDB.get(); 
        if (projects) { res.status(200)
         .json(projects) } 
         else {
@@ -19,8 +22,30 @@ router.get('/:id', async (req, res) => {
             message: `Could not get projects. Error: ${error}`
         })
     }
+}) 
+
+
+// get by id
+
+router.get('/:id', async (req, res) => {
+    try {
+        const projects = await ProjectDB.get(req.params.id); 
+       if (projects) { res.status(200)
+        .json(projects) } 
+        else {
+            res.status(404).json({
+                message: "Project not found"
+            })
+        }
+    } catch (error) {
+        res.status(500)
+        .json({
+            message: `Could not get project. Error: ${error}`
+        })
+    }
 })
 
+// POST REQUESTS 
 
 router.post('/', async (req, res) => {
     try {
@@ -35,6 +60,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+// PUT REQUESTS 
 
 router.put('/:id', async (req, res) => {
     try {
@@ -54,7 +80,9 @@ router.put('/:id', async (req, res) => {
             message: `Cannot update action. Error: ${error}`
         })
     }
-})
+}) 
+
+// DELETE REQUESTS 
 
 router.delete('/:id', async (req, res) => {
     try {
