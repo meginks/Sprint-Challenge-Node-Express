@@ -3,6 +3,8 @@ const router = express.Router();
 const ActionDB = require('./data/helpers/actionModel.js'); 
 
 
+// GET REQUESTS 
+// get all 
 router.get('/', async (req, res) => {
     try {
         const action = await ActionDB.get(); 
@@ -15,6 +17,8 @@ router.get('/', async (req, res) => {
         })
     }
 })
+
+// get by action id 
 
 router.get('/:id', async (req, res) => {
     try {
@@ -34,7 +38,10 @@ router.get('/:id', async (req, res) => {
             message: `Error getting action. Error: ${error}`
         })
     }
-})
+}) 
+
+// POST REQUEST 
+// note: you must have a key on the passed in object called "project_id" with the value being an existing project or it won't work 
 
 router.post('/', async (req, res) => {
     try {
@@ -49,6 +56,7 @@ router.post('/', async (req, res) => {
     }
 })
 
+// PUT REQUEST 
 
 router.put('/:id', async (req, res) => {
     try {
@@ -68,7 +76,10 @@ router.put('/:id', async (req, res) => {
             message: `Cannot update action. Error: ${error}`
         })
     }
-})
+}) 
+
+
+// DELETE REQUEST
 
 router.delete('/:id', async (req, res) => {
     try {

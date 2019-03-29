@@ -25,7 +25,7 @@ router.get('/', async (req, res) => {
 }) 
 
 
-// get by id
+// get by project id
 
 router.get('/:id', async (req, res) => {
     try {
@@ -43,7 +43,29 @@ router.get('/:id', async (req, res) => {
             message: `Could not get project. Error: ${error}`
         })
     }
-})
+}) 
+
+// get actions for project 
+
+router.get('/:id/actions', async (req, res) => {
+    try {
+        const actions = await ProjectDB.getProjectActions(req.params.id); 
+        if (actions) {
+            res.status(200)
+            .json(actions)
+        } else {
+            res.status(404)
+            .json({
+                message: 'cannot find project to retrieve actions'
+            })
+        }} catch (error) {
+            res.status(500)
+            .json({
+                message: `error getting actions. Error: ${error}`
+            })
+        }
+    }
+)
 
 // POST REQUESTS 
 
